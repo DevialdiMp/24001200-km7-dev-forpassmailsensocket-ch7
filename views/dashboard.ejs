@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on("connect", () => {
+        console.log("Terhubung ke server Socket.IO");
+      });
+
+      socket.on("receiveSuccessMessage", (message) => {
+        console.log("Pesan sukses diterima:", message);
+        alert(`Pesan: ${message}`);
+      });
+
+      socket.on("receiveErrorMessage", (errorMessage) => {
+        console.log("Pesan kesalahan diterima:", errorMessage);
+        alert(`Oops! Terjadi kesalahan\n${errorMessage}`);
+      });
+
+      function sendError() {
+        const errorMessage = "Terjadi kesalahan pada sistem.";
+        socket.emit("sendErrorMessage", errorMessage);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Selamat datang di Dashboard</h1>
+    <p>Nama: <%= name %></p>
+    <p>Email: <%= email %></p>
+    <p>
+      <a href="/">Beranda</a> |
+      <a href="/logout">Logout</a>
+    </p>
+  </body>
+</html>

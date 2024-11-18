@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on("connect", () => {
+        console.log("Terhubung ke server Socket.IO");
+      });
+
+      socket.on("receiveSuccessMessage", (message) => {
+        console.log("Pesan sukses diterima:", message);
+        alert(`Pesan: ${message}`);
+      });
+
+      socket.on("receiveErrorMessage", (errorMessage) => {
+        console.log("Pesan kesalahan diterima:", errorMessage);
+        alert(`Oops! Terjadi kesalahan\n${errorMessage}`);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form method="POST" action="/login">
+      <label for="email">Email:</label>
+      <br />
+      <input type="email" id="email" name="email" required />
+      <br />
+      <label for="password">Password:</label>
+      <br />
+      <input type="password" id="password" name="password" required />
+      <br /><br />
+      <button type="submit">Kirim</button>
+    </form>
+    <p>
+      <a href="/">Beranda</a> | <a href="/register">Buat akun</a> |
+      <a href="/security/v1/forgot-password">Lupa sandi?</a>
+    </p>
+  </body>
+</html>
