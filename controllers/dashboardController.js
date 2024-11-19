@@ -8,4 +8,4 @@ const dashboardController = (req, res) => {
   res.render('dashboard', { name: user.name, email: user.email });
 };
 
-module.exports = { dashboardController };
+module.exports = { dashboardController }; 

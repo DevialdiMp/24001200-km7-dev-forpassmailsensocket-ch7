@@ -7,7 +7,6 @@ const http = require("http");
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 
-const authRoutes = require('./routes/authRoutes');
 const registerRoutes = require('./routes/registerRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
@@ -39,7 +38,6 @@ initializeNotification(server);
 app.get('/', (req, res) => {
   res.render('index');
 });
-app.use('/auth', authRoutes);
 app.use('/security/v2', resetPassRoutes);
 app.use('/security/v1', forgotPassRoutes);
 app.use('/register', registerRoutes);

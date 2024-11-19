@@ -47,7 +47,7 @@ const resetPassword = async (req, res, next) => {
     if (error instanceof jwt.TokenExpiredError) {
       error.message = 'Token expired atau tautan expired silahkan gunakan tautan baru.';
       error.status = 400;
-    }s
+    }
     Sentry.captureException(error);
     errorNotification('Token expired atau tautan expired silahkan gunakan tautan baru.');
     return next(error);
